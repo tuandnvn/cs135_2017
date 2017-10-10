@@ -98,7 +98,7 @@ instance Fly Argument Argument where
       fly x y = Predicate { lemma = "fly", arguments = [x, y] }
 
 instance Fly Argument Predicate where
-      fly x y = Predicate { lemma = lemma y, arguments = [x, arguments y !! 0] }
+      fly x y = Predicate { lemma = "fly " ++ lemma y, arguments = [x, arguments y !! 0] }
 
 -- POPULATE THE KNOWLEDGE BASE AS FOLLOWS
 facts =
