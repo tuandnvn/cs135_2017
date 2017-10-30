@@ -1,4 +1,4 @@
-{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE MultiParamTypeClasses, FlexibleInstances, TypeSynonymInstances #-}
 
 -- GL TYPES
 data Type = HUMN |		   -- human
@@ -60,6 +60,7 @@ car = artifact "car"
 cat = animate "cat"
 mouse = animate "mouse"
 to_boston = to boston
+south = location "South"
 
 -- CONTEXT
 -- you can consider this the "here and now": a list of facts ("is" predicates) that are true about the current state of the world
@@ -73,7 +74,8 @@ context = [
 		boston,
 		ball,
 		cat,
-		mouse
+		mouse,
+		south
 	  ]
 
 -- HELPER FUNCTIONS
@@ -102,7 +104,9 @@ instance Fly Argument Predicate where
 
 -- POPULATE THE KNOWLEDGE BASE AS FOLLOWS
 facts =
-	      [fly john to_boston]
+	      [fly john to_boston,
+	      fly john south
+	      ]
 --	      ++ [catch cat mouse]	-- add your other facts
 
 
@@ -115,3 +119,9 @@ facts =
 -- extra credit:
 -- how (e.g. qHow john boston -- fly)
 -- CREATE QUESTION-ANSWERING FUNCTIONS HERE
+
+
+qWhere1 :: ( Argument -> b -> Predicate ) -> Argument -> [String]
+qWhere1 f a = [ ]
+
+
